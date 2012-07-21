@@ -10,6 +10,7 @@ requests welcome.
 Possible optimization: keep a reference to unused items until some new item overwrites it. This is
 easier and faster, but if you have a queue with very large objects (or a very large, mostly-empty
 queue), you may see memory leaks. The performance gain is probably not worth it, but I suppose
+that's a tradeoff some may not be willing to make.
 
 ## Usage
 
