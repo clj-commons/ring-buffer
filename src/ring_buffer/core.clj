@@ -2,7 +2,7 @@
   (:import (clojure.lang Counted Sequential IPersistentCollection IPersistentStack Reversible IObj)
            (java.io Writer)))
 
-(deftype RingBuffer [^int start ^int len buf meta]
+(deftype RingBuffer [^long start ^long len buf meta]
   Counted
   (count [this] len)
 
