@@ -2,6 +2,12 @@
   (:import (clojure.lang Counted Sequential IPersistentCollection IPersistentStack Reversible IObj)
            (java.io Writer)))
 
+;; If one of our numbers gets over 2 billion, the user's ring buffer is way too large!
+;; and count is defined to return an int anyway, so we can't make it work regardless.
+;; So we'll just skip that overflow check for a mild speed boost.
+(def ^:private old-unchecked-math *unchecked-math*)
+(set! *unchecked-math* true)
+
 (deftype RingBuffer [^long start ^long len buf meta]
   Counted
   (count [this] len)
@@ -55,3 +61,5 @@
   "Create an empty ring buffer with the specified [capacity]."
   [capacity]
   (RingBuffer. 0 0 (vec (repeat capacity nil)) nil))
+
+(set! *unchecked-math* old-unchecked-math)
