@@ -25,6 +25,11 @@ amalloy.ring-buffer> (peek (into (ring-buffer 3) '(a b c d e)))
 c
 ```
 
+## Installation
+
+See the [ring-buffer Clojars page](https://clojars.org/amalloy/ring-buffer) for Leiningen and Maven
+install snippets.
+
 ## License
 
 Copyright © 2012 Alan Malloy
