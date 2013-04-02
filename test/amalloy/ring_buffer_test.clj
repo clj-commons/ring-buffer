@@ -1,7 +1,10 @@
-(ns ring-buffer.core-test
+(ns amalloy.ring-buffer-test
   (:use clojure.test
-        ring-buffer.core))
+        amalloy.ring-buffer))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest features
+  (let [b (ring-buffer 3)]
+    (is (= '(a b) (into b '(a b))))
+    (is (= '(c d e) (into b '(a b c d e))))
+    (is (= '(d e) (pop (into b '(a b c d e)))))
+    (is (= 'c (peek (into b '(a b c d e)))))))
