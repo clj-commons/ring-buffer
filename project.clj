@@ -1,4 +1,4 @@
-(defproject ring-buffer "0.1.0-SNAPSHOT"
+(defproject amalloy/ring-buffer "1.0"
   :description "Persistent bounded-size queue implementation in Clojure"
   :url "http://github.com/amalloy/ring-buffer"
   :license {:name "Eclipse Public License"
