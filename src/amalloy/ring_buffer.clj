@@ -1,4 +1,4 @@
-(ns ring-buffer.core
+(ns amalloy.ring-buffer
   (:import (clojure.lang Counted Sequential IPersistentCollection IPersistentStack Reversible IObj)
            (java.io Writer)))
 

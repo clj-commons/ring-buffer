@@ -15,13 +15,13 @@ that's a tradeoff some may not be willing to make.
 ## Usage
 
 ```clojure
-ring-buffer.core> (into (ring-buffer 3) '(a b))
+amalloy.ring-buffer> (into (ring-buffer 3) '(a b))
 (a b)
-ring-buffer.core> (into (ring-buffer 3) '(a b c d e))
+amalloy.ring-buffer> (into (ring-buffer 3) '(a b c d e))
 (c d e)
-ring-buffer.core> (pop (into (ring-buffer 3) '(a b c d e)))
+amalloy.ring-buffer> (pop (into (ring-buffer 3) '(a b c d e)))
 (d e)
-ring-buffer.core> (peek (into (ring-buffer 3) '(a b c d e)))
+amalloy.ring-buffer> (peek (into (ring-buffer 3) '(a b c d e)))
 c
 ```
 
