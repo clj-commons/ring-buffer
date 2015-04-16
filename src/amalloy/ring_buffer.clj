@@ -78,14 +78,11 @@
     (.toArray this (object-array (.count this)))))
 
 (defmethod print-method RingBuffer [b ^Writer w]
-  (.write w "(")
-  (loop [b (seq b)]
-    (when-let [[x & xs] b]
-      (print-method x w)
-      (when xs
-        (.write w " ")
-        (recur xs))))
-  (.write w ")"))
+  (.write w "#amalloy/ring-buffer ")
+  (print-method [(.len b) (sequence b)] w))
+
+(defn- read-method [[len items]]
+  (RingBuffer. 0 len (vec (take len (concat items (repeat nil)))) nil))
 
 (defn ring-buffer
   "Create an empty ring buffer with the specified [capacity]."
