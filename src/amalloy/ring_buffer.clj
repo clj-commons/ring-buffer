@@ -18,7 +18,7 @@
 
 (deftype RingBuffer [^long start ^long len buf meta]
   Serializable
-  
+
   Counted
   (count [this] len)
 
