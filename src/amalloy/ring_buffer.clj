@@ -1,6 +1,14 @@
 (ns amalloy.ring-buffer
-  (:import (clojure.lang Counted Sequential IPersistentCollection IPersistentStack Reversible IObj)
-           (java.io Writer Serializable)))
+  (:import (clojure.lang Counted
+                         Sequential
+                         IPersistentCollection
+                         IPersistentStack
+                         Reversible
+                         IObj
+                         SeqIterator)
+           (java.io Writer
+                    Serializable)
+           (java.util Collection)))
 
 ;; If one of our numbers gets over 2 billion, the user's ring buffer is way too large!
 ;; and count is defined to return an int anyway, so we can't make it work regardless.
@@ -47,7 +55,27 @@
       (RingBuffer. start (inc len) (assoc buf (rem (+ start len) (count buf)) x) meta)))
   (seq [this]
     (seq (for [i (range len)]
-           (nth buf (rem (+ start i) (count buf)))))))
+           (nth buf (rem (+ start i) (count buf))))))
+
+  Collection
+  (iterator [this]
+    (SeqIterator. (.seq this)))
+  (contains [this e]
+    (boolean (some #(= e %) (.seq this))))
+  (containsAll [this elts]
+    (every? #(.contains this %) elts))
+  (size [this]
+    (.count this))
+  (isEmpty [this]
+    (empty? this))
+  (toArray [this dest]
+    (reduce (fn [idx item]
+              (aset dest idx item)
+              (inc idx))
+            0, this)
+    dest)
+  (toArray [this]
+    (.toArray this (object-array (.count this)))))
 
 (defmethod print-method RingBuffer [b ^Writer w]
   (.write w "(")
