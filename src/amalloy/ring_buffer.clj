@@ -1,6 +1,6 @@
 (ns amalloy.ring-buffer
   (:import (clojure.lang Counted Sequential IPersistentCollection IPersistentStack Reversible IObj)
-           (java.io Writer)))
+           (java.io Writer Serializable)))
 
 ;; If one of our numbers gets over 2 billion, the user's ring buffer is way too large!
 ;; and count is defined to return an int anyway, so we can't make it work regardless.
@@ -9,6 +9,8 @@
 (set! *unchecked-math* true)
 
 (deftype RingBuffer [^long start ^long len buf meta]
+  Serializable
+  
   Counted
   (count [this] len)
 
