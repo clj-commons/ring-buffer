@@ -75,7 +75,7 @@
   (toArray [this]
     (.toArray this (object-array (.count this)))))
 
-(defmethod print-method RingBuffer [b ^Writer w]
+(defmethod print-method RingBuffer [^RingBuffer b ^Writer w]
   (.write w "#amalloy/ring-buffer ")
   (print-method [(.len b) (sequence b)] w))
 
