@@ -4,10 +4,8 @@
                          IPersistentCollection
                          IPersistentStack
                          Reversible
-                         IObj
-                         SeqIterator)
-           (java.io Writer
-                    Serializable)
+                         IObj)
+           (java.io Writer Serializable)
            (java.util Collection)))
 
 ;; If one of our numbers gets over 2 billion, the user's ring buffer is way too large!
@@ -59,7 +57,7 @@
 
   Collection
   (iterator [this]
-    (SeqIterator. (.seq this)))
+    (.iterator ^Iterable (sequence this)))
   (contains [this e]
     (boolean (some #(= e %) (.seq this))))
   (containsAll [this elts]
