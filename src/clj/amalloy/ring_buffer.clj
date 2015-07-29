@@ -6,7 +6,8 @@
                          Reversible
                          IObj)
            (java.io Writer Serializable)
-           (java.util Collection)))
+           (java.util Collection)
+           (amalloy Dummy Dummy$Holder)))
 
 ;; If one of our numbers gets over 2 billion, the user's ring buffer is way too large!
 ;; and count is defined to return an int anyway, so we can't make it work regardless.
@@ -90,5 +91,10 @@
   "Create an empty ring buffer with the specified [capacity]."
   [capacity]
   (RingBuffer. 0 0 (vec (repeat capacity nil)) nil))
+
+(defn test-field-setting []
+  (let [d (Dummy. (Dummy$Holder. "old"))]
+    (set! (.s (.h d)) "new")
+    (prn (.s (.h d)))))
 
 (set! *unchecked-math* old-unchecked-math)
