@@ -77,14 +77,19 @@
   (toArray [this]
     (.toArray this (object-array (.count this)))))
 
-(defn- ^RingBuffer as-buffer [b]
-  b)
+(defn- ^:strict add [^long x ^long y]
+  (unchecked-inc
+   (unchecked-inc
+    (unchecked-add x
+                   (unchecked-subtract Long/MIN_VALUE y)))))
 
 (defn- ^:strict do-print [b w]
   (let [^RingBuffer b b, ^Writer w w]
+    (.containsAll b b)
+    (.containsAll b (identity b))
     (.write w "#amalloy/ring-buffer ")
     (.write w "")
-    (print-method [(.len (as-buffer b)) (sequence b)] w)))
+    (print-method [(.len b) (sequence b)] w)))
 
 (defmethod print-method RingBuffer [b w]
   (do-print b w))
@@ -97,15 +102,18 @@
   [capacity]
   (RingBuffer. 0 0 (vec (repeat capacity nil)) nil))
 
-(defn test-field-setting []
-  (let [d (Dummy. (Dummy$Holder. "old"))]
+(defn ^:strict test-field-setting []
+  (let [^Dummy d (Dummy. (Dummy$Holder. "old"))]
     (set! (.s (.h d)) "new")
     (prn (.s (.h d))))
 
-  (let [d (identity (Dummy. (Dummy$Holder. "old")))]
-    (set! (.h ^Dummy d) 1)))
+  (let [^Dummy d (identity (Dummy. (Dummy$Holder. "old")))
+        ^Dummy$Holder h (Dummy$Holder. "help")]
+    (set! (.h ^Dummy d) h)
+    nil))
 
 (defn -main []
+  (test-field-setting)
   (prn (ring-buffer 5)))
 
 

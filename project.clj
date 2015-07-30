@@ -16,7 +16,7 @@
              }
 
   :aliases {"c" ["with-profile" "skummet" "do" "clean," "skummet" "compile"]
-            "j" ["with-profile" "skummet" "do" "clean," "skummet" "jar"]})
+            "j" ["with-profile" "skummet" "do" "clean," "skummet" "compile," "skummet" "jar"]})
 
 
 ;; remember. skummet compile works, but skummet jar somehow makes shitty classfile
