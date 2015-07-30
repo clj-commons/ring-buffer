@@ -1,0 +1,33 @@
+Compiling 1 source files to /Users/alanmalloy/src/clojure/ring-buffer/target/classes
+strict mode (print-method): false
+strict mode (print-dup): false
+strict mode (*loaded-libs*): false
+strict mode (*pending-paths*): false
+strict mode (*loading-verbosely*): false
+strict mode (print-initialized): false
+strict mode (CollReduce): false
+strict mode (InternalReduce): false
+strict mode (IKVReduce): false
+strict mode (->VecNode): false
+strict mode (->ArrayChunk): false
+strict mode (->VecSeq): false
+strict mode (->Vec): false
+strict mode (->Eduction): false
+Compiling amalloy.ring-buffer
+strict mode (old-unchecked-math): false
+strict mode (->RingBuffer): false
+strict mode (->RingBuffer): false
+Strict def for do-print
+Casting
+Casting
+Emitting strict local ^RingBuffer b as Lamalloy/ring_buffer/RingBuffer;
+Emitting strict local ^Writer w as Ljava/io/Writer;
+Casting
+Casting
+Emitting strict local ^RingBuffer b as Lamalloy/ring_buffer/RingBuffer;
+Emitting strict local ^Writer w as Ljava/io/Writer;
+strict mode (do-print): true
+strict mode (read-method): false
+strict mode (ring-buffer): false
+strict mode (test-field-setting): false
+strict mode (-main): false

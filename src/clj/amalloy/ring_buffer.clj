@@ -7,7 +7,8 @@
                          IObj)
            (java.io Writer Serializable)
            (java.util Collection)
-           (amalloy Dummy Dummy$Holder)))
+           (amalloy Dummy Dummy$Holder))
+  (:gen-class))
 
 ;; If one of our numbers gets over 2 billion, the user's ring buffer is way too large!
 ;; and count is defined to return an int anyway, so we can't make it work regardless.
@@ -76,10 +77,11 @@
   (toArray [this]
     (.toArray this (object-array (.count this)))))
 
-(defn- do-print [^RingBuffer b ^Writer w]
-  (.write w "#amalloy/ring-buffer ")
-  (.write w "")
-  (print-method [(.len b) (sequence b)] w))
+(defn- ^:strict do-print [b w]
+  (let [^RingBuffer b b, ^Writer w w]
+    (.write w "#amalloy/ring-buffer ")
+    (.write w "")
+    (print-method [(.len b) (sequence b)] w)))
 
 (defmethod print-method RingBuffer [b w]
   (do-print b w))
@@ -95,6 +97,13 @@
 (defn test-field-setting []
   (let [d (Dummy. (Dummy$Holder. "old"))]
     (set! (.s (.h d)) "new")
-    (prn (.s (.h d)))))
+    (prn (.s (.h d))))
+
+  (let [d (identity (Dummy. (Dummy$Holder. "old")))]
+    (set! (.h ^Dummy d) 1)))
+
+(defn -main []
+  (prn (ring-buffer 5)))
+
 
 (set! *unchecked-math* old-unchecked-math)

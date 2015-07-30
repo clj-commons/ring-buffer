@@ -6,9 +6,12 @@
   :dependencies [[org.clojure/clojure "1.7.0"]]
   :source-paths ["src/clj"]
   :java-source-paths ["src/java"]
-  :plugins [[org.skummet/lein-skummet "0.2.1"]]
   :aot :all
+  :main amalloy.ring-buffer
+  :javac-options ["-target" "1.7" "-source" "1.7"]
   :profiles {:skummet {:exclusions [[org.clojure/clojure]]
+                       :plugins [[org.skummet/lein-skummet "0.2.1"]]
+
                        :dependencies ^:replace [[com.factual.skummet/clojure "1.7.0-RC1-r4"]]}}
 
   :aliases {"c" ["do" "clean," "with-profile" "skummet" "skummet" "compile"]})
