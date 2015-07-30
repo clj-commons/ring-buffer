@@ -77,11 +77,14 @@
   (toArray [this]
     (.toArray this (object-array (.count this)))))
 
+(defn- ^RingBuffer as-buffer [b]
+  b)
+
 (defn- ^:strict do-print [b w]
   (let [^RingBuffer b b, ^Writer w w]
     (.write w "#amalloy/ring-buffer ")
     (.write w "")
-    (print-method [(.len b) (sequence b)] w)))
+    (print-method [(.len (as-buffer b)) (sequence b)] w)))
 
 (defmethod print-method RingBuffer [b w]
   (do-print b w))

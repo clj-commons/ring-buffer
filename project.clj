@@ -10,7 +10,7 @@
   :main amalloy.ring-buffer
   :javac-options ["-target" "1.7" "-source" "1.7"]
   :profiles {:skummet {:exclusions [[org.clojure/clojure]]
-                       :plugins [[org.skummet/lein-skummet "0.2.1"]]
+                       :plugins [[org.skummet/lein-skummet "0.2.2-SNAPSHOT"]]
                        :dependencies [[com.factual.skummet/clojure "1.7.0-RC1-r4"]]}
              ;:default []
              }
