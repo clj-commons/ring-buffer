@@ -110,7 +110,7 @@
   (let [d (identity (Dummy. (Dummy$Holder. "old")))
         h (Dummy$Holder. "help")
         xs ^objects (object-array 5)]
-    (set! (.h d) h)
+    (set! (.h ^Dummy d) h)
     (prn (alength xs))
     nil))
 
