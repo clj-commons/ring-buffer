@@ -82,6 +82,12 @@
   (.containsAll b (identity b))
   (.write w "#amalloy/ring-buffer ")
   (.write w "")
+  (let [xs (doall (map str (range 500)))]
+    (dotimes [_ 4]
+      (print  "str: ")
+      (time (dotimes [_ 100000] (apply str xs)))
+      (print "str': ")
+      (time (dotimes [_ 100000] (apply str' xs)))))
   (print-method [(.len b) (sequence b)] w))
 
 (defmethod print-method RingBuffer [b w]
