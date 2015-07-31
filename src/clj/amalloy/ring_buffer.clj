@@ -77,19 +77,12 @@
   (toArray [this]
     (.toArray this (object-array (.count this)))))
 
-(defn- ^:strict add [^long x ^long y]
-  (unchecked-inc
-   (unchecked-inc
-    (unchecked-add x
-                   (unchecked-subtract Long/MIN_VALUE y)))))
-
-(defn- ^:strict do-print [b w]
-  (let [^RingBuffer b b, ^Writer w w]
-    (.containsAll b b)
-    (.containsAll b (identity b))
-    (.write w "#amalloy/ring-buffer ")
-    (.write w "")
-    (print-method [(.len b) (sequence b)] w)))
+(defn- ^:strict do-print [^RingBuffer b ^Writer w]
+  (.containsAll b b)
+  (.containsAll b (identity b))
+  (.write w "#amalloy/ring-buffer ")
+  (.write w "")
+  (print-method [(.len b) (sequence b)] w))
 
 (defmethod print-method RingBuffer [b w]
   (do-print b w))
@@ -103,16 +96,14 @@
   (RingBuffer. 0 0 (vec (repeat capacity nil)) nil))
 
 (defn ^:strict test-field-setting []
-  (let [^Dummy d (Dummy. (Dummy$Holder. "old"))]
-    (set! (.s (.h d)) "new")
-    (prn (.s (.h d))))
-
   (let [d (identity (Dummy. (Dummy$Holder. "old")))
-        h (Dummy$Holder. "help")
-        xs ^objects (object-array 5)]
-    (set! (.h ^Dummy d) h)
-    (prn (alength xs))
-    nil))
+        h (Dummy$Holder. "new")]
+    (set! (.h ^Dummy d) h)))
+
+(defn ^:strict test-recursion ^long [^long x]
+  (if (zero? x)
+    x
+    (inc (test-recursion (dec x)))))
 
 (defn -main []
   (test-field-setting)
