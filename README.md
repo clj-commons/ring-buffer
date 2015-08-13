@@ -30,6 +30,14 @@ c
 See the [ring-buffer Clojars page](https://clojars.org/amalloy/ring-buffer) for Leiningen and Maven
 install snippets.
 
+## Development
+
+### Running tests
+
+The project uses [lein-doo](http://github.com/bensu/doo) to run cljs tests. So for example, if `phantomjs` is in the path, the tests can be run with:
+
+    $ lein doo phantom test
+
 ## License
 
 Copyright © 2012 Alan Malloy
