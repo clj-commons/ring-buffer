@@ -77,10 +77,10 @@
 
 (defmethod print-method RingBuffer [^RingBuffer b ^Writer w]
   (.write w "#amalloy/ring-buffer ")
-  (print-method [(.len b) (sequence b)] w))
+  (print-method [(count (.buf b)) (sequence b)] w))
 
-(defn- read-method [[len items]]
-  (RingBuffer. 0 len (vec (take len (concat items (repeat nil)))) nil))
+(defn- read-method [[capacity items]]
+  (RingBuffer. 0 (count items) (vec (take capacity (concat items (repeat nil)))) nil))
 
 (defn ring-buffer
   "Create an empty ring buffer with the specified [capacity]."
