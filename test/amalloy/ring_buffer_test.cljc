@@ -2,7 +2,7 @@
   (:require #?(:clj  [clojure.test :refer :all]
                :cljs [cljs.test :refer-macros [deftest is]])
             [amalloy.ring-buffer #?@(:clj [:refer :all]
-                                     :cljs [:refer [ring-buffer]])])
+                                     :cljs [:refer [ring-buffer full?]])])
   #?(:clj
      (:import [java.io
                ByteArrayOutputStream
@@ -48,3 +48,15 @@
     (is (empty? (ring-buffer 10)))
     (is (not (empty? rb)))
     (is (= expected (seq (to-array rb))))))
+
+(deftest test-fillup
+  (is (full? (ring-buffer 0)))
+  (is (full? (into (ring-buffer 1) [false])))
+  (is (full? (into (ring-buffer 1) [""])))
+  (is (full? (into (ring-buffer 1) [0])))
+  (is (full? (into (ring-buffer 1) [nil])))
+  (is (full? (into (ring-buffer 20) (range 20))))
+  (is (full? (into (ring-buffer 20) (range 26))))
+  (is (not (full? (into (ring-buffer 50) (range 26)))))
+  (is (not (full? (ring-buffer 1))))
+  (is (not (full? (ring-buffer 20)))))

@@ -14,6 +14,9 @@
 (def ^:private old-unchecked-math *unchecked-math*)
 (set! *unchecked-math* true)
 
+(defprotocol IFillUp
+  (full? [this]))
+
 (deftype RingBuffer [^long start ^long len buf meta]
   Serializable
 
@@ -73,7 +76,11 @@
             0, this)
     dest)
   (toArray [this]
-    (.toArray this (object-array (.count this)))))
+    (.toArray this (object-array (.count this))))
+
+  IFillUp
+  (full? [this]
+         (= (count (.buf this)) (.len this))))
 
 (defmethod print-method RingBuffer [^RingBuffer b ^Writer w]
   (.write w "#amalloy/ring-buffer ")
