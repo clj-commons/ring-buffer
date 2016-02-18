@@ -80,7 +80,7 @@
 
   IFillUp
   (full? [this]
-         (= (count (.buf this)) (.len this))))
+         (= (count buf) len)))
 
 (defmethod print-method RingBuffer [^RingBuffer b ^Writer w]
   (.write w "#amalloy/ring-buffer ")

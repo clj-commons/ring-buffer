@@ -65,7 +65,7 @@
 
   IFillUp
   (full? [this]
-         (= (count (.-buf this)) (count this))))
+         (= (count buf) len)))
 
 
 
