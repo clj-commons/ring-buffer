@@ -14,9 +14,6 @@
 (def ^:private old-unchecked-math *unchecked-math*)
 (set! *unchecked-math* true)
 
-(defprotocol IFillUp
-  (full? [this]))
-
 (deftype RingBuffer [^long start ^long len buf meta]
   Serializable
 
@@ -76,11 +73,7 @@
             0, this)
     dest)
   (toArray [this]
-    (.toArray this (object-array (.count this))))
-
-  IFillUp
-  (full? [this]
-         (= (count buf) len)))
+    (.toArray this (object-array (.count this)))))
 
 (defmethod print-method RingBuffer [^RingBuffer b ^Writer w]
   (.write w "#amalloy/ring-buffer ")
@@ -88,6 +81,8 @@
 
 (defn- read-method [[capacity items]]
   (RingBuffer. 0 (count items) (vec (take capacity (concat items (repeat nil)))) nil))
+
+(defn full? [rb] (= (count (.buf rb)) (.len rb)))
 
 (defn ring-buffer
   "Create an empty ring buffer with the specified [capacity]."

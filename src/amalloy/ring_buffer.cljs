@@ -6,9 +6,6 @@
 #_(def ^:private old-unchecked-math *unchecked-math*)
 #_(set! *unchecked-math* true)
 
-(defprotocol IFillUp
-  (full? [this]))
-
 (deftype RingBuffer [start len buf meta]
   ICounted
   (-count [this] len)
@@ -61,15 +58,11 @@
                   (when xs
                     (-write w " ")
                     (recur xs))))
-              (-write w ")"))
-
-  IFillUp
-  (full? [this]
-         (= (count buf) len)))
+              (-write w ")")))
 
 
 
-
+(defn full? [rb] (= (count (.-buf rb)) (.-len rb)))
 
 (defn ring-buffer
   "Create an empty ring buffer with the specified [capacity]."
