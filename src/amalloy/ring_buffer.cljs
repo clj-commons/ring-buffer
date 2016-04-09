@@ -62,7 +62,7 @@
 
 
 
-
+(defn full? [^RingBuffer rb] (= (count (.-buf rb)) (.-len rb)))
 
 (defn ring-buffer
   "Create an empty ring buffer with the specified [capacity]."

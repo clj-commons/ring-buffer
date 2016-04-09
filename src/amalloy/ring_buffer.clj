@@ -82,6 +82,8 @@
 (defn- read-method [[capacity items]]
   (RingBuffer. 0 (count items) (vec (take capacity (concat items (repeat nil)))) nil))
 
+(defn full? [^RingBuffer rb] (= (count (.-buf rb)) (.-len rb)))
+
 (defn ring-buffer
   "Create an empty ring buffer with the specified [capacity]."
   [capacity]
