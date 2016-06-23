@@ -49,6 +49,11 @@
        (seq (for [i (range len)]
               (nth buf (rem (+ start i) (count buf))))))
 
+  IReversible
+  (-rseq [this]
+        (seq (for [i (range (- len 1) -1 -1)]
+               (nth buf (rem (+ start i) (count buf))))))
+
   IPrintWithWriter
   (-pr-writer [b w opts]
               (-write w "(")
