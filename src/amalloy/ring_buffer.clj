@@ -55,6 +55,11 @@
     (seq (for [i (range len)]
            (nth buf (rem (+ start i) (count buf))))))
 
+  Reversible
+  (rseq [this]
+    (seq (for [i (range (- len 1) -1 -1)]
+           (nth buf (rem (+ start i) (count buf))))))
+
   Collection
   (iterator [this]
     (.iterator ^Iterable (sequence this)))

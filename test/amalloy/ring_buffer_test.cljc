@@ -47,4 +47,5 @@
     (is (= 4 (count rb)))
     (is (empty? (ring-buffer 10)))
     (is (not (empty? rb)))
+    (is (= (reverse expected) (rseq rb)))
     (is (= expected (seq (to-array rb))))))
