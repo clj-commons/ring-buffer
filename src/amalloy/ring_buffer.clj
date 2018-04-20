@@ -2,6 +2,7 @@
   (:import (clojure.lang Counted
                          Sequential
                          IPersistentCollection
+                         Indexed
                          IPersistentStack
                          Reversible
                          IObj)
