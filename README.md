@@ -14,21 +14,35 @@ that's a tradeoff some may not be willing to make.
 
 ## Usage
 
-```clojure
-amalloy.ring-buffer> (into (ring-buffer 3) '(a b))
-(a b)
-amalloy.ring-buffer> (into (ring-buffer 3) '(a b c d e))
-(c d e)
-amalloy.ring-buffer> (pop (into (ring-buffer 3) '(a b c d e)))
-(d e)
-amalloy.ring-buffer> (peek (into (ring-buffer 3) '(a b c d e)))
-c
-```
+Add the dependency into your `project.clj`
 
-## Installation
+``` clojure
+[amalloy/ring-buffer "1.2.1"]
+```
+Latest version: [![Clojars Project](https://img.shields.io/clojars/v/amalloy/ring-buffer.svg)](https://clojars.org/amalloy/ring-buffer)
 
 See the [ring-buffer Clojars page](https://clojars.org/amalloy/ring-buffer) for Leiningen and Maven
 install snippets.
+
+Then require the namespace:
+
+```clojure
+(ns your.ns
+ (:require [amalloy.ring-buffer :refer :all]))
+```
+
+Finally add and remove items from the ring-buffer
+
+```clojure
+(into (ring-buffer 3) '(a b))
+;;=> (a b)
+(into (ring-buffer 3) '(a b c d e))
+;;=> (c d e)
+(pop (into (ring-buffer 3) '(a b c d e)))
+;;=> (d e)
+(peek (into (ring-buffer 3) '(a b c d e)))
+;;=> c
+```
 
 ## Development
 
