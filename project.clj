@@ -7,6 +7,8 @@
                  [org.clojure/clojurescript "1.10.439"]]
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-doo "0.1.11"]]
+  :deploy-repositories [["releases" :clojars]
+                        ["snapshots" :clojars]]
   :cljsbuild {:builds [{:id "test"
                         :source-paths ["src" "test"]
                         :compiler     {:output-to     "target/testable.js"
