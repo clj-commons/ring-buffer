@@ -38,6 +38,12 @@ The project uses [lein-doo](http://github.com/bensu/doo) to run cljs tests. So f
 
     $ lein doo phantom test
 
+## History
+
+ring-buffer was originally created by [Alan Malloy](https://github.com/amalloy). In December 2018 it was moved to CLJ Commons for continued maintenance.
+
+It could previously be found at [amalloy/ring-buffer](https://github.com/amalloy/ring-buffer). [clj-commons/ring-buffer](https://github.com/clj-commons/ring-buffer) is the canonical repository now.
+
 ## License
 
 Copyright © 2012 Alan Malloy
