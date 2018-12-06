@@ -1,5 +1,7 @@
 # ring-buffer
 
+[![Build Status](https://travis-ci.org/clj-commons/ring-buffer.svg)](https://travis-ci.org/clj-commons/ring-buffer)
+
 A persistent collection with semantics roughly equivalent to a ring buffer: acts like a queue, but
 has a predetermined maximum capacity; items added after that capacity is exceeded implicitly eject
 items from the front of the queue to make room.
