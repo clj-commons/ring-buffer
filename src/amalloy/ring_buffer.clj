@@ -2,6 +2,7 @@
   (:import (clojure.lang Counted
                          Sequential
                          IPersistentCollection
+                         Indexed
                          IPersistentStack
                          Reversible
                          IObj)
@@ -78,7 +79,15 @@
             0, this)
     dest)
   (toArray [this]
-    (.toArray this (object-array (.count this)))))
+    (.toArray this (object-array (.count this))))
+  
+  Indexed
+  (nth [this i]
+    (nth buf (mod (+ start i) len)))
+  (nth [this i default]
+    (if (< (max i (- i)) len)
+      (nth buf (mod (+ start i) len))
+      default)))
 
 (defmethod print-method RingBuffer [^RingBuffer b ^Writer w]
   (.write w "#amalloy/ring-buffer ")
