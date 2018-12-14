@@ -54,6 +54,14 @@
         (seq (for [i (range (- len 1) -1 -1)]
                (nth buf (rem (+ start i) (count buf))))))
 
+  IIndexed
+  (-nth [this i]
+    (nth buf (mod (+ start i) len)))
+  (-nth [this i default]
+    (if (< (max i (- i)) len)
+      (nth buf (mod (+ start i) len))
+      default))
+
   IPrintWithWriter
   (-pr-writer [b w opts]
               (-write w "(")
