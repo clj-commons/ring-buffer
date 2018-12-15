@@ -16,7 +16,22 @@
     (is (= '(a b) (into b '(a b))))
     (is (= '(c d e) (into b '(a b c d e))))
     (is (= '(d e) (pop (into b '(a b c d e)))))
-    (is (= 'c (peek (into b '(a b c d e)))))))
+    (is (= 'c (peek (into b '(a b c d e)))))
+    ;; nth
+    (is (= 'a (nth (into b '(a b c)) 0)))
+    (is (= 'b (nth (into b '(a b c)) 1)))
+    (is (= 'c (nth (into b '(a b c)) 2)))
+    (is (= 'a (nth (into b '(a b c)) 3)))  ;; wrap
+    (is (= 'a (nth (into b '(a b c)) 30))) ;; wrap
+    ;; nth with negative idx
+    (is (= 'c (nth (into b '(a b c)) -1)))
+    (is (= 'a (nth (into b '(a b c)) -3)))
+    (is (= 'a (nth (into b '(a b c)) -6)))
+    ;; nth with default value
+    (is (= 'a (nth (into b '(a b c))   0 'z)))
+    (is (= 'z (nth (into b '(a b))     2 'z)))
+    (is (= 'z (nth (into b '(a b c))  10 'z)))
+    (is (= 'z (nth (into b '(a b c)) -10 'z)))))
 
 #?(:clj
 (deftest test-serializable

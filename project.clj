@@ -1,4 +1,4 @@
-(defproject amalloy/ring-buffer "1.2.3-SNAPSHOT"
+(defproject amalloy/ring-buffer "1.3.0-SNAPSHOT"
   :description "Persistent bounded-size queue implementation in Clojure"
   :url "https://github.com/clj-commons/ring-buffer"
   :license {:name "Eclipse Public License"
@@ -13,5 +13,4 @@
                         :source-paths ["src" "test"]
                         :compiler     {:output-to     "target/testable.js"
                                        :main          amalloy.runner
-                                       :target :nodejs
                                        :optimizations :none}}]})

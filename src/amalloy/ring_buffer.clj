@@ -80,7 +80,7 @@
     dest)
   (toArray [this]
     (.toArray this (object-array (.count this))))
-  
+
   Indexed
   (nth [this i]
     (nth buf (mod (+ start i) len)))

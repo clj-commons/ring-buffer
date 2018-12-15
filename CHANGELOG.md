@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 1.3.0 - 2018-12-15
+
+### Added
+
+* Added support for `nth` lookups (also with negative indices)
+
 ## 1.2.2 - 2018-12-07
 
 ### Fixed
