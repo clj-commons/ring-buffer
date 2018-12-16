@@ -9,8 +9,9 @@
             [lein-doo "0.1.11"]]
   :deploy-repositories [["releases" :clojars]
                         ["snapshots" :clojars]]
-  :cljsbuild {:builds [{:id "test"
+  :cljsbuild {:builds [{:id "node-test"
                         :source-paths ["src" "test"]
                         :compiler     {:output-to     "target/testable.js"
                                        :main          amalloy.runner
+                                       :target        :nodejs
                                        :optimizations :none}}]})
