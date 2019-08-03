@@ -1,5 +1,6 @@
 # ring-buffer
-
+[![Clojars Project](https://img.shields.io/clojars/v/amalloy/ring-buffer.svg)](https://clojars.org/amalloy/ring-buffer)
+[![cljdoc badge](https://cljdoc.org/badge/amalloy/ring-buffer)](https://cljdoc.org/d/amalloy/ring-buffer)
 [![Build Status](https://travis-ci.org/clj-commons/ring-buffer.svg)](https://travis-ci.org/clj-commons/ring-buffer)
 
 A persistent collection with semantics roughly equivalent to a ring
