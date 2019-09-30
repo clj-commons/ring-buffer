@@ -13,7 +13,7 @@ commands:
       - run:
           name: Fetch dependencies
           command: |
-            lein deps
+            lein deps-all
 
       - save_cache:
           paths:
@@ -24,9 +24,21 @@ commands:
     description: "Run tests"
     steps:
       - run:
-          name: Run JVM tests
+          name: Run JVM tests with clojure 1.8
           command: |
-            lein test
+            lein with-profile +1.8 test
+      - run:
+          name: Run JVM tests with clojure 1.9
+          command: |
+            lein with-profile +1.9 test
+      - run:
+          name: Run JVM tests with clojure 1.10.0
+          command: |
+            lein with-profile +1.10.0 test
+      - run:
+          name: Run JVM tests with clojure 1.10.1
+          command: |
+            lein with-profile +1.10.1 test
       - run:
           name: Run nodejs tests
           command: |
