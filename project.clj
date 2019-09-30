@@ -9,6 +9,12 @@
             [lein-doo "0.1.11"]]
   :deploy-repositories [["releases" :clojars]
                         ["snapshots" :clojars]]
+  :profiles {:1.8 {:dependencies [[org.clojure/clojure "1.8.0"]]}
+             :1.9 {:dependencies [[org.clojure/clojure "1.9.0"]]}
+             :1.10.0 {:dependencies [[org.clojure/clojure "1.10.0"]]}
+             :1.10.1 {:dependencies [[org.clojure/clojure "1.10.1"]]}}
+  :aliases {"test-all" ["with-profile" "+1.8:+1.9:+1.10.0:+1.10.1" "test"]
+            "deps-all" ["with-profile" "+1.8:+1.9:+1.10.0:+1.10.1" "deps"]}
   :cljsbuild {:builds [{:id "node-test"
                         :source-paths ["src" "test"]
                         :compiler     {:output-to     "target/testable.js"
