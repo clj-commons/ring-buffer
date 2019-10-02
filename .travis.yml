@@ -1,8 +1,0 @@
-language: clojure
-script:
-  - lein doo node node-test once
-  - lein test
-jdk:
-  - oraclejdk8
-  - oraclejdk11
-  - openjdk-ea
