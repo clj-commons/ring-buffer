@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 1.3.1 - 2019-12-01
+
+* Changed: Clojure and ClojureScript are now marked as `:scope "provided"` in project.clj
+
 ## 1.3.0 - 2018-12-15
 
 ### Added
