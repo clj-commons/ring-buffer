@@ -22,7 +22,7 @@ suppose that's a tradeoff some may not be willing to make.
 Add the dependency into your `project.clj`
 
 ``` clojure
-[amalloy/ring-buffer "1.3.0"]
+[amalloy/ring-buffer "1.3.1"]
 ```
 Latest version: [![Clojars Project](https://img.shields.io/clojars/v/amalloy/ring-buffer.svg)](https://clojars.org/amalloy/ring-buffer)
 
